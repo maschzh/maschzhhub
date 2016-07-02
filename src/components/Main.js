@@ -4,6 +4,7 @@ require('styles/App.scss');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ImgFigure from './ImgFigure';
+import ControllerUnit from './ControllerUnit'
 
 //获取图片相关的数据
 let imageDatas = require('../data/imageDatas.json');
@@ -77,7 +78,7 @@ class AppComponent extends React.Component {
 			vPosRangeX = vPosRange.x,
 
 			imgsArrangeTopArr = [],
-			topImgNum = Math.ceil(Math.random() * 2),	//取一个或不取
+			topImgNum = Math.floor(Math.random() * 2),	//取一个或不取
 
 			topImgSpliceIndex = 0,
 
@@ -162,7 +163,7 @@ class AppComponent extends React.Component {
 
 		// 拿到一个imgFigure的大小
 		//获取imgFigure0的必须用ReactDOM.findDOMNode才能获取scrollWidth的值
-		let imgFigureDOM=ReactDOM.findDOMNode(this.refs.imgFigure0), 
+		let imgFigureDOM=ReactDOM.findDOMNode(this.refs.imgFigure0),
 			imgW = imgFigureDOM.scrollWidth,
 			imgH = imgFigureDOM.scrollHeight,
 			halfImgW = Math.ceil(imgW / 2),
@@ -211,6 +212,7 @@ class AppComponent extends React.Component {
   			}
 
   			imgFigures.push(<ImgFigure key ={i} data={ value } ref= {'imgFigure' + i} arrange= {this.state.imgsArrangeArr[i]} inverse ={this.inverse(i)} center= {this.center(i)}/>);
+  			controllerUnits.push(<ControllerUnit key = {i} arrange = {this.state.imgsArrangeArr[i]} inverse = {this.inverse(i)} center = {this.center(i)}/>);
   		}
   		
 	    return (
